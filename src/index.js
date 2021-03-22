@@ -1,3 +1,3 @@
-import test from './modules/test';
+import mainSlider from './modules/mainSlider';
 
-test();
+mainSlider();
