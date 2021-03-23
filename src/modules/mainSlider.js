@@ -27,6 +27,7 @@ const mainSlider = () => {
 	};
 
 	const stopSlide = () => {
+		console.log('stop');
 		clearInterval(interval);
 	};
 
@@ -38,11 +39,11 @@ const mainSlider = () => {
 
 	slider.addEventListener('mouseout', event => {
 		if (event.target.closest('.slide-text')) {
-			startSlide(time);
+			startSlide();
 		}
 	});
 
-	startSlide(time);
+	startSlide(2000);
 };
 
 export default mainSlider;
