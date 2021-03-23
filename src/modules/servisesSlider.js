@@ -2,7 +2,6 @@ const servicesSlider = () => {
 	const slider = document.querySelector('.services-slider'),
 		slides = slider.querySelectorAll('.slide'),
 		slidesToShow = 5,
-		infinity = true,
 		itemWidth = Math.abs(100 / slidesToShow);
 	let position = 0;
 
@@ -73,7 +72,7 @@ const servicesSlider = () => {
 	addArrow();
 
 	const prevSlider = () => {
-		if (infinity || position > 0) {
+		if (position > 0) {
 			--position;
 			if (position < 0) {
 				position = slides.length - slidesToShow;
@@ -85,7 +84,7 @@ const servicesSlider = () => {
 	};
 
 	const nextSlider = () => {
-		if (infinity || position < slides.length - slidesToShow) {
+		if (position < slides.length - slidesToShow) {
 			++position;
 			if (position > slides.length - slidesToShow) {
 				position = 0;
