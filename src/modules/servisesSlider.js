@@ -11,6 +11,7 @@ const servicesSlider = () => {
 	slider.insertAdjacentElement('afterbegin', sliderHidden);
 	sliderHidden.insertAdjacentElement('afterbegin', sliderWrap);
 
+
 	const addSliderClass = () => {
 		slider.classList.add('slider-carusel__main');
 		sliderHidden.classList.add('slider-carusel__hidden');
