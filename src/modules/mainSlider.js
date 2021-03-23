@@ -1,7 +1,7 @@
 const mainSlider = () => {
 	const slider = document.querySelector('.main-slider'),
 		slides = slider.querySelectorAll('.slide'),
-		time = 3000;
+		time = 2000;
 	let currentSlide = 0,
 		interval;
 
