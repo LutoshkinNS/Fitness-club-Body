@@ -38,7 +38,7 @@ eval("\nmodule.exports = function () {\n\treturn /[\\u001b\\u009b][[()#;?]*(?:[0
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _modules_mainSlider__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/mainSlider */ \"./src/modules/mainSlider.js\");\n/* harmony import */ var _modules_servisesSlider__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/servisesSlider */ \"./src/modules/servisesSlider.js\");\n/* harmony import */ var _modules_gallerySlider__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/gallerySlider */ \"./src/modules/gallerySlider.js\");\n/* harmony import */ var _modules_modalFreeVisit__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/modalFreeVisit */ \"./src/modules/modalFreeVisit.js\");\n/* harmony import */ var _modules_call__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/call */ \"./src/modules/call.js\");\n\n\n\n\n\n(0,_modules_mainSlider__WEBPACK_IMPORTED_MODULE_0__.default)();\n(0,_modules_servisesSlider__WEBPACK_IMPORTED_MODULE_1__.default)();\n(0,_modules_gallerySlider__WEBPACK_IMPORTED_MODULE_2__.default)();\n(0,_modules_modalFreeVisit__WEBPACK_IMPORTED_MODULE_3__.default)();\n(0,_modules_call__WEBPACK_IMPORTED_MODULE_4__.default)();\n\n//# sourceURL=webpack://Fitness-club-Body/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _modules_mainSlider__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/mainSlider */ \"./src/modules/mainSlider.js\");\n/* harmony import */ var _modules_servisesSlider__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/servisesSlider */ \"./src/modules/servisesSlider.js\");\n/* harmony import */ var _modules_gallerySlider__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/gallerySlider */ \"./src/modules/gallerySlider.js\");\n/* harmony import */ var _modules_popup__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/popup */ \"./src/modules/popup.js\");\n/* harmony import */ var _modules_sendCallbackForm__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/sendCallbackForm */ \"./src/modules/sendCallbackForm.js\");\n\n\n\n\n // popup(idOpenPopup, selectorWrapBlocks, btnSelector);\n\n(0,_modules_popup__WEBPACK_IMPORTED_MODULE_3__.default)('free_visit_form', '.free-visit', '.free-visit');\n(0,_modules_popup__WEBPACK_IMPORTED_MODULE_3__.default)('callback_form', '.head-main', '.callback-btn');\n(0,_modules_mainSlider__WEBPACK_IMPORTED_MODULE_0__.default)();\n(0,_modules_servisesSlider__WEBPACK_IMPORTED_MODULE_1__.default)();\n(0,_modules_gallerySlider__WEBPACK_IMPORTED_MODULE_2__.default)();\n(0,_modules_sendCallbackForm__WEBPACK_IMPORTED_MODULE_4__.default)();\n\n//# sourceURL=webpack://Fitness-club-Body/./src/index.js?");
 
 /***/ }),
 
@@ -50,17 +50,6 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _mod
 
 "use strict";
 eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nvar animate = function animate(_ref) {\n  var duration = _ref.duration,\n      draw = _ref.draw,\n      timing = _ref.timing;\n  var start = performance.now();\n  requestAnimationFrame(function animate(time) {\n    var timeFraction = (time - start) / duration;\n    if (timeFraction > 1) timeFraction = 1;\n    var progress = timing(timeFraction);\n    draw(progress);\n\n    if (timeFraction < 1) {\n      requestAnimationFrame(animate);\n    }\n  });\n};\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (animate);\n\n//# sourceURL=webpack://Fitness-club-Body/./src/modules/animate.js?");
-
-/***/ }),
-
-/***/ "./src/modules/call.js":
-/*!*****************************!*\
-  !*** ./src/modules/call.js ***!
-  \*****************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var _animate__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./animate */ \"./src/modules/animate.js\");\n\n\nvar call = function call() {\n  var callbackForm = document.getElementById('callback_form');\n  document.addEventListener('click', function (event) {\n    var target = event.target;\n\n    if (target.closest('.callback-btn')) {\n      if (!target.closest('#footer')) {\n        callbackForm.style.display = 'block';\n        document.querySelector('.head-slider').style.zIndex = -1;\n        document.querySelector('#totop').style.zIndex = -1;\n        (0,_animate__WEBPACK_IMPORTED_MODULE_0__.default)({\n          duration: 500,\n          timing: function timing(timeFraction) {\n            return timeFraction;\n          },\n          draw: function draw(progress) {\n            callbackForm.style.opacity = progress;\n          }\n        });\n      }\n    } else if (!target.closest('.form-content')) {\n      callbackForm.style.display = 'none';\n    }\n  });\n};\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (call);\n\n//# sourceURL=webpack://Fitness-club-Body/./src/modules/call.js?");
 
 /***/ }),
 
@@ -86,14 +75,25 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 
 /***/ }),
 
-/***/ "./src/modules/modalFreeVisit.js":
-/*!***************************************!*\
-  !*** ./src/modules/modalFreeVisit.js ***!
-  \***************************************/
+/***/ "./src/modules/popup.js":
+/*!******************************!*\
+  !*** ./src/modules/popup.js ***!
+  \******************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var _animate__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./animate */ \"./src/modules/animate.js\");\n\n\nvar modalFreeVisit = function modalFreeVisit() {\n  var freeVisitForm = document.getElementById('free_visit_form');\n  document.addEventListener('click', function (event) {\n    var target = event.target;\n\n    if (target.closest('.free-visit')) {\n      freeVisitForm.style.display = 'block';\n      document.querySelector('.head-slider').style.zIndex = -2;\n      document.querySelector('#totop').style.zIndex = -2;\n      (0,_animate__WEBPACK_IMPORTED_MODULE_0__.default)({\n        duration: 500,\n        timing: function timing(timeFraction) {\n          return timeFraction;\n        },\n        draw: function draw(progress) {\n          freeVisitForm.style.opacity = progress;\n        }\n      });\n    } else if (!target.closest('.form-content')) {\n      freeVisitForm.style.display = 'none';\n    }\n  });\n};\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (modalFreeVisit);\n\n//# sourceURL=webpack://Fitness-club-Body/./src/modules/modalFreeVisit.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var _animate__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./animate */ \"./src/modules/animate.js\");\n\n\nvar popup = function popup(idOpenPopup, individualSelectorWrapBlocks, btnSelector) {\n  var nameForm = document.getElementById(idOpenPopup);\n  document.addEventListener('click', function (event) {\n    var target = event.target;\n\n    if (target.closest(btnSelector)) {\n      if (target.closest(individualSelectorWrapBlocks)) {\n        nameForm.style.display = 'block';\n        (0,_animate__WEBPACK_IMPORTED_MODULE_0__.default)({\n          duration: 500,\n          timing: function timing(timeFraction) {\n            return timeFraction;\n          },\n          draw: function draw(progress) {\n            nameForm.querySelector('.form-wrapper').style.opacity = progress;\n          }\n        });\n      }\n    } else if (!target.closest('.form-content')) {\n      nameForm.style.display = 'none';\n    }\n  });\n};\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (popup);\n\n//# sourceURL=webpack://Fitness-club-Body/./src/modules/popup.js?");
+
+/***/ }),
+
+/***/ "./src/modules/sendCallbackForm.js":
+/*!*****************************************!*\
+  !*** ./src/modules/sendCallbackForm.js ***!
+  \*****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var _animate__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./animate */ \"./src/modules/animate.js\");\n\n\nvar sendCallbackForm = function sendCallbackForm() {\n  var footerForm = document.getElementById('footer_form'),\n      btn = footerForm.querySelector(' .callback-btn');\n  var loader = \"<div class=\\\"lds-ring\\\"><div></div><div></div><div></div><div>\",\n      btnContentStart = btn.textContent;\n\n  var postData = function postData(body) {\n    return fetch('./server.php', {\n      method: 'POST',\n      headers: {\n        'Content-Type': 'application/json'\n      },\n      body: JSON.stringify(body)\n    });\n  };\n\n  var addPopupThanks = function addPopupThanks(error) {\n    var popupThanks = document.getElementById('thanks');\n\n    if (error) {\n      popupThanks.querySelector('h4').textContent = 'Ошибка!';\n      popupThanks.querySelector('p').textContent = 'Во время отправки возникла ошибка, попробуйте позже.';\n    }\n\n    popupThanks.style.display = 'block';\n    (0,_animate__WEBPACK_IMPORTED_MODULE_0__.default)({\n      duration: 500,\n      timing: function timing(timeFraction) {\n        return timeFraction;\n      },\n      draw: function draw(progress) {\n        popupThanks.querySelector('.form-wrapper').style.opacity = progress;\n      }\n    });\n    document.addEventListener('click', function (event) {\n      if (event.target.matches('.close-btn') || !event.target.closest('.form-content')) {\n        popupThanks.style.display = 'none';\n      }\n    });\n  };\n\n  var clearInputs = function clearInputs() {\n    var input = footerForm.querySelector('.input-text');\n    input.value = '';\n  };\n\n  footerForm.addEventListener('submit', function (event) {\n    event.preventDefault();\n    btn.innerHTML = loader;\n    var formData = new FormData(footerForm);\n    var body = {};\n    formData.forEach(function (val, key) {\n      body[key] = val;\n    });\n    postData(body).then(function (response) {\n      if (!response.ok) {\n        throw new Error('status network not ok');\n      }\n\n      btn.textContent = btnContentStart;\n      addPopupThanks();\n      clearInputs();\n    })[\"catch\"](function (error) {\n      btn.textContent = btnContentStart;\n      addPopupThanks(error);\n      clearInputs();\n    });\n  });\n};\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (sendCallbackForm);\n\n//# sourceURL=webpack://Fitness-club-Body/./src/modules/sendCallbackForm.js?");
 
 /***/ }),
 
@@ -506,7 +506,7 @@ eval("var map = {\n\t\"./log\": \"./node_modules/webpack/hot/log.js\"\n};\n\n\nf
 /******/ 	
 /******/ 	/* webpack/runtime/getFullHash */
 /******/ 	(() => {
-/******/ 		__webpack_require__.h = () => ("1d14a1e2fc6a75f5ad56")
+/******/ 		__webpack_require__.h = () => ("216a004b5397505cb123")
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/global */
