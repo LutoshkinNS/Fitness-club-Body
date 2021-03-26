@@ -5,6 +5,7 @@ import servicesSlider from './modules/servisesSlider';
 import gallerySlider from './modules/gallerySlider';
 import popup from './modules/popup';
 import submitForms from './modules/submitForms';
+import calc from './modules/calc';
 
 valid('input[type="text"]');
 maskPhone('input[type="tel"]');
@@ -21,4 +22,5 @@ submitForms('card_order');
 popup('free_visit_form', '.free-visit', '.free-visit');
 popup('callback_form', '.head-main', '.callback-btn');
 popup('thanks');
+calc();
 
