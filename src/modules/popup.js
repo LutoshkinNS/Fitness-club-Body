@@ -20,7 +20,7 @@ const popup = (idOpenPopup, individualSelectorWrapBlocks, btnSelector) => {
 					}
 				});
 			}
-		} else if (!target.closest('.form-content')) {
+		} else if (!target.closest('.form-content') || event.target.matches('.close-btn')) {
 			nameForm.style.display = 'none';
 		}
 	});

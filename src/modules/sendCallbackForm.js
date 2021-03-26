@@ -1,6 +1,8 @@
 import animate from './animate';
 
+
 const sendCallbackForm = () => {
+
 	const footerForm = document.getElementById('footer_form'),
 		btn = footerForm.querySelector(' .callback-btn');
 
