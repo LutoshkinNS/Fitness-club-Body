@@ -88,15 +88,19 @@ const submitForms = formID => {
 
 		const formData = new FormData(form);
 		const body = {};
+		console.log('body: ', body);
 
 		formData.forEach((val, key) => {
+			console.log('key: ', key);
+			console.log('val: ', val);
+			console.log('___________');
 			body[key] = val;
 		});
 
 		const sendForm = () => {
 			postData(body)
 				.then(response => {
-					if (response.ok) {
+					if (!response.ok) {
 						throw new Error('status network not ok');
 					}
 					if (!form.closest('.popup')) {
