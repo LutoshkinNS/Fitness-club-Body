@@ -7,10 +7,8 @@ const dropDownMenu = () => {
 
 		if (target.closest('.club-select')) {
 			if (!dropdownList.style.display || dropdownList.style.display === 'none') {
-				console.log(true);
 				dropdownList.style.display = 'block';
 			} else {
-				console.log(false);
 				dropdownList.style.display = 'none';
 			}
 		}

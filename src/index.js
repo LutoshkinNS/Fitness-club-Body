@@ -1,6 +1,7 @@
 import maskPhone from './modules/maskPhone';
 import valid from './modules/valid';
 import dropDownMenu from './modules/dropDownMenu';
+import arrowUp from './modules/arrowUp';
 import mainSlider from './modules/mainSlider';
 import servicesSlider from './modules/servisesSlider';
 import gallerySlider from './modules/gallerySlider';
@@ -12,6 +13,7 @@ valid('input[type="text"]');
 maskPhone('input[type="tel"]');
 dropDownMenu();
 mainSlider();
+arrowUp();
 servicesSlider();
 gallerySlider();
 // sendCallbackForm();
