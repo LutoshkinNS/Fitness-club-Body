@@ -20,7 +20,6 @@ const popup = () => {
 
 	document.addEventListener('click', event => {
 		const target = event.target;
-		console.log('target: ', target);
 
 		if (!target.closest('.form-content') || event.target.matches('.close-btn')) {
 			thanksForm.style.display = 'none';
