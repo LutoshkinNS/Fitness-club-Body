@@ -19,8 +19,9 @@ submitForms('form1');
 submitForms('form2');
 submitForms('card_order');
 // popup(idOpenPopup, selectorWrapBlocks, btnSelector);
-popup('free_visit_form', '.free-visit', '.free-visit');
-popup('callback_form', '.head-main', '.callback-btn');
-popup('thanks');
+// popup('free_visit_form', '.free-visit', '.free-visit');
+// popup('callback_form', '.head-main', '.callback-btn');
+// popup('thanks');
+popup();
 calc();
 
