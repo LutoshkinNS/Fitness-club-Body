@@ -75,7 +75,7 @@ const submitForms = formID => {
 	const clearInputs = () => {
 		const inputs = form.querySelectorAll('input');
 		inputs.forEach(input => {
-			if (input.getAttribute('type') !== 'checkbox') {
+			if (input.getAttribute('type') === 'text' || input.getAttribute('type') === 'tel') {
 				input.value = '';
 			}
 		});
@@ -88,12 +88,8 @@ const submitForms = formID => {
 
 		const formData = new FormData(form);
 		const body = {};
-		console.log('body: ', body);
 
 		formData.forEach((val, key) => {
-			console.log('key: ', key);
-			console.log('val: ', val);
-			console.log('___________');
 			body[key] = val;
 		});
 
