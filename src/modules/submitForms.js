@@ -2,7 +2,8 @@ import animate from './animate';
 
 const submitForms = () => {
 
-	const forms = document.querySelectorAll('form');
+	const forms = document.querySelectorAll('form'),
+		inputsRadioFooter = document.querySelectorAll('footer input[type="radio"]');
 
 	const check = document.createElement('p');
 	check.textContent = 'Вы не дали согласие на обработку персональных данных';
@@ -11,6 +12,16 @@ const submitForms = () => {
 					text-align: center;
 					margin: 5px 0;
 				`;
+
+	const footerErrorMessage = document.createElement('p');
+	footerErrorMessage.textContent = 'Выберите клуб';
+	footerErrorMessage.style.cssText  = `
+							position: absolute;
+							color: red;
+							text-align: center;
+							margin: 5px 0;
+							bottom: 0;
+						`;
 
 	const loader = `<div class="loader-wrap"><div class="lds-ring"><div></div><div></div><div></div><div></div>`;
 
@@ -137,7 +148,20 @@ const submitForms = () => {
 					form.insertAdjacentElement('beforeend', check);
 				}
 			} catch {
-				sendForm();
+				for (let index = 0; index < inputsRadioFooter.length; index++) {
+					if (inputsRadioFooter[index].checked) {
+						footerErrorMessage.remove();
+						btnSubmit.innerHTML = loader;
+						btnSubmit.disabled = true;
+						sendForm();
+						break;
+					} else {
+						btnSubmit.textContent = btnContentStart;
+						btnSubmit.disabled = false;
+						const chooseClub = document.querySelector('.choose-club');
+						chooseClub.insertAdjacentElement('afterend', footerErrorMessage);
+					}
+				}
 			}
 		});
 	});
