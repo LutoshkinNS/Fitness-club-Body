@@ -8,7 +8,6 @@ const arrowUp = () => {
 
 	window.addEventListener('scroll', () => {
 		if (heightToSection < window.pageYOffset) {
-			console.log(true);
 			arrow.style.display = 'block';
 		} else {
 			arrow.style.display = 'none';

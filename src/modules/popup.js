@@ -42,10 +42,9 @@ const popup = () => {
 		if (target.closest('.fixed-gift')) {
 			giftForm.style.display = 'block';
 			animatePopup(giftForm);
-		} else if (target.closest('.fixed-gift') &&
-		!target.closest('.form-content') || event.target.matches('.close-btn')) {
-			giftForm.style.display = 'none';
 			document.querySelector('.fixed-gift').remove();
+		} else if (!target.closest('.form-content') || event.target.matches('.close-btn')) {
+			giftForm.style.display = 'none';
 		}
 	});
 };

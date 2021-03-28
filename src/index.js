@@ -8,6 +8,7 @@ import gallerySlider from './modules/gallerySlider';
 import popup from './modules/popup';
 import submitForms from './modules/submitForms';
 import calc from './modules/calc';
+import burgerMenu from './modules/burgerMenu';
 
 valid('input[type="text"]');
 maskPhone('input[type="tel"]');
@@ -16,7 +17,6 @@ mainSlider();
 arrowUp();
 servicesSlider();
 gallerySlider();
-// sendCallbackForm();
 submitForms('footer_form');
 submitForms('banner-form');
 submitForms('form1');
@@ -24,4 +24,5 @@ submitForms('form2');
 submitForms('card_order');
 popup();
 calc();
+burgerMenu();
 
