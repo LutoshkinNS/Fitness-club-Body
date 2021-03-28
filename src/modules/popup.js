@@ -20,7 +20,6 @@ const popup = () => {
 
 		popups.forEach(popup => {
 			if (target.closest(popup.getAttribute('data-btn-selector')) && !target.closest('#footer')) {
-				console.log('popup: ', popup);
 				popup.style.display = 'block';
 				animatePopup(popup);
 				if (popup.getAttribute('data-btn-selector') === '.fixed-gift') {
