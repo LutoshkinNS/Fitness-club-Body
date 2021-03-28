@@ -1,6 +1,11 @@
 const arrowUp = () => {
 	const arrow = document.getElementById('totop'),
-		firstSection = document.querySelector('section');
+		firstSection = document.querySelector('section'),
+		topMenu = document.querySelector('.top-menu'),
+		head = document.querySelector('.head'),
+		heightToMenu = topMenu.getBoundingClientRect().top;
+
+	const heightMenu = topMenu.getBoundingClientRect().height;
 
 	const heightToSection = firstSection.getBoundingClientRect().top;
 
@@ -11,6 +16,16 @@ const arrowUp = () => {
 			arrow.style.display = 'block';
 		} else {
 			arrow.style.display = 'none';
+		}
+
+		if (window.innerWidth <= 768) {
+			if (heightToMenu <= window.pageYOffset) {
+				topMenu.style.position = 'fixed';
+				head.style.paddingBottom = heightMenu + 'px';
+			} else {
+				topMenu.style.position = 'static';
+				head.style.paddingBottom = 0;
+			}
 		}
 	});
 

@@ -13,6 +13,7 @@ const burgerMenu = () => {
 			popupMenu.style.display = 'none';
 		}
 	});
+
 };
 
 export default burgerMenu;

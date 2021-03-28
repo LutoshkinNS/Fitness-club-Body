@@ -1,12 +1,8 @@
 import animate from './animate';
 
-const submitForms = formID => {
+const submitForms = () => {
 
-	const form = document.getElementById(formID),
-		btnSubmit = form.querySelector('button[type="submit"]'),
-		checkbox = form.querySelector('input[type="checkbox"]');
-
-	form.style.position = 'relative';
+	const forms = document.querySelectorAll('form');
 
 	const check = document.createElement('p');
 	check.textContent = 'Вы не дали согласие на обработку персональных данных';
@@ -16,8 +12,7 @@ const submitForms = formID => {
 					margin: 5px 0;
 				`;
 
-	const loader = `<div class="loader-wrap"><div class="lds-ring"><div></div><div></div><div></div><div></div>`,
-		btnContentStart = btnSubmit.textContent;
+	const loader = `<div class="loader-wrap"><div class="lds-ring"><div></div><div></div><div></div><div></div>`;
 
 	const postData = body =>
 		fetch('./server.php', {
@@ -72,7 +67,7 @@ const submitForms = formID => {
 
 	};
 
-	const clearInputs = () => {
+	const clearInputs = form => {
 		const inputs = form.querySelectorAll('input');
 		inputs.forEach(input => {
 			if (input.getAttribute('type') === 'text' || input.getAttribute('type') === 'tel') {
@@ -81,58 +76,72 @@ const submitForms = formID => {
 		});
 	};
 
-	form.addEventListener('submit', event => {
-		event.preventDefault();
+	forms.forEach(form => {
+		const btnSubmit = form.querySelector('button[type="submit"]'),
+			checkbox = form.querySelector('input[type="checkbox"]');
 
-		btnSubmit.innerHTML = loader;
+		form.style.position = 'relative';
 
-		const formData = new FormData(form);
-		const body = {};
+		const btnContentStart = btnSubmit.textContent;
 
-		formData.forEach((val, key) => {
-			body[key] = val;
-		});
+		form.addEventListener('submit', event => {
+			event.preventDefault();
 
-		const sendForm = () => {
-			postData(body)
-				.then(response => {
-					if (!response.ok) {
-						throw new Error('status network not ok');
-					}
-					if (!form.closest('.popup')) {
-						addPopup('thanks');
-					} else {
-						addPopup(form.closest('.popup').getAttribute('id'));
-					}
+			btnSubmit.innerHTML = loader;
+			btnSubmit.disabled = true;
+
+			const formData = new FormData(form);
+			const body = {};
+
+			formData.forEach((val, key) => {
+				body[key] = val;
+			});
+
+			const sendForm = () => {
+				postData(body)
+					.then(response => {
+						if (!response.ok) {
+							throw new Error('status network not ok');
+						}
+						if (!form.closest('.popup')) {
+							addPopup('thanks');
+						} else {
+							addPopup(form.closest('.popup').getAttribute('id'));
+						}
+						btnSubmit.textContent = btnContentStart;
+						btnSubmit.disabled = false;
+						clearInputs(form);
+					})
+					.catch(error => {
+						if (!form.closest('.popup')) {
+							addPopup('thanks', error);
+						} else {
+							addPopup(form.closest('.popup').getAttribute('id'), error);
+						}
+						btnSubmit.textContent = btnContentStart;
+						btnSubmit.disabled = false;
+						clearInputs(form);
+					});
+			};
+
+			try {
+				if (!checkbox) {
+					throw new Error('it has no checkbox');
+				}
+				if (checkbox.checked) {
+					check.remove();
+					sendForm();
+				} else {
 					btnSubmit.textContent = btnContentStart;
-					clearInputs();
-				})
-				.catch(error => {
-					if (!form.closest('.popup')) {
-						addPopup('thanks', error);
-					} else {
-						addPopup(form.closest('.popup').getAttribute('id'), error);
-					}
-					btnSubmit.textContent = btnContentStart;
-					clearInputs();
-				});
-		};
-
-		try {
-			if (!checkbox) {
-				throw new Error('it has no checkbox');
-			}
-			if (checkbox.checked) {
-				check.remove();
+					btnSubmit.disabled = false;
+					form.insertAdjacentElement('beforeend', check);
+				}
+			} catch {
 				sendForm();
-			} else {
-				btnSubmit.textContent = btnContentStart;
-				form.insertAdjacentElement('beforeend', check);
 			}
-		} catch {
-			sendForm();
-		}
+		});
 	});
+
 };
 
 export default submitForms;

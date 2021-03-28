@@ -1,8 +1,7 @@
 const mainSlider = () => {
 	const slider = document.querySelector('.main-slider'),
 		slides = slider.querySelectorAll('.slide');
-	let currentSlide = 0,
-		interval;
+	let currentSlide = 0;
 
 	const prevSlide = (elementSlide, indexSlide) => {
 		elementSlide[indexSlide].style.display = 'none';
@@ -22,24 +21,9 @@ const mainSlider = () => {
 	};
 
 	const startSlide = (time = 2000) => {
-		interval = setInterval(autoPlaySlide, time);
+		autoPlaySlide();
+		setInterval(autoPlaySlide, time);
 	};
-
-	const stopSlide = () => {
-		clearInterval(interval);
-	};
-
-	slider.addEventListener('mouseover', event => {
-		if (event.target.closest('.slide-text')) {
-			stopSlide();
-		}
-	});
-
-	slider.addEventListener('mouseout', event => {
-		if (event.target.closest('.slide-text')) {
-			startSlide();
-		}
-	});
 
 	startSlide(2000);
 };

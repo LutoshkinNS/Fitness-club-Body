@@ -1,10 +1,7 @@
 import animate from './animate';
 
 const popup = () => {
-	const freeVisitForm = document.getElementById('free_visit_form'),
-		callbackForm = document.getElementById('callback_form'),
-		thanksForm = document.getElementById('thanks'),
-		giftForm = document.getElementById('gift');
+	const popups = document.querySelectorAll('.popup');
 
 	const animatePopup = nameForm => {
 		animate({
@@ -21,31 +18,18 @@ const popup = () => {
 	document.addEventListener('click', event => {
 		const target = event.target;
 
-		if (!target.closest('.form-content') || event.target.matches('.close-btn')) {
-			thanksForm.style.display = 'none';
-		}
-
-		if (target.closest('.free-visit')) {
-			freeVisitForm.style.display = 'block';
-			animatePopup(freeVisitForm);
-		} else if (!target.closest('.form-content') || event.target.matches('.close-btn')) {
-			freeVisitForm.style.display = 'none';
-		}
-
-		if (target.closest('.call') && !target.closest('footer')) {
-			callbackForm.style.display = 'block';
-			animatePopup(callbackForm);
-		} else if (!target.closest('.form-content') || event.target.matches('.close-btn')) {
-			callbackForm.style.display = 'none';
-		}
-
-		if (target.closest('.fixed-gift')) {
-			giftForm.style.display = 'block';
-			animatePopup(giftForm);
-			document.querySelector('.fixed-gift').remove();
-		} else if (!target.closest('.form-content') || event.target.matches('.close-btn')) {
-			giftForm.style.display = 'none';
-		}
+		popups.forEach(popup => {
+			if (target.closest(popup.getAttribute('data-btn-selector')) && !target.closest('#footer')) {
+				console.log('popup: ', popup);
+				popup.style.display = 'block';
+				animatePopup(popup);
+				if (popup.getAttribute('data-btn-selector') === '.fixed-gift') {
+					document.querySelector('.fixed-gift').remove();
+				}
+			} else if (!target.closest('.form-content') || event.target.matches('.close-btn')) {
+				popup.style.display = 'none';
+			}
+		});
 	});
 };
 
